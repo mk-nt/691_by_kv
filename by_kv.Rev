@@ -83,6 +83,8 @@ idx = 1
 for (k in 2:maxK) {
   matrixByState[k] <- allChars
   matrixByState[k].setNumStatesPartition(k)
+  # Reduce memory footprint, per https://github.com/revbayes/revbayes/issues/552
+  matrixByState[k].removeExcludedCharacters()
   nc = matrixByState[k].nchar()
   
   if (nc > 0) {
